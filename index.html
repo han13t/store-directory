@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MAXBUY Store Directory</title>
+<style>
+:root {
+  --site-primary: #D71920;
+  --site-on-primary: #FFFFFF;
+  --site-secondary: #171717;
+  --site-on-secondary: #FFFFFF;
+  --site-background: #FFFFFF;
+  --site-on-background: #171717;
+  --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+  color-scheme: light dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--site-font-body); background: light-dark(#f5f5f5,#101010); color: light-dark(#171717,#f7f7f7); }
+#app { min-height: 100vh; width: 100%; background-color: var(--site-background); color: var(--site-on-background); border-radius: 0; }
+.hero { background: var(--site-secondary); color: var(--site-on-secondary); padding: calc(28px * var(--site-spacing-scale)) max(20px, calc((100vw - 1120px)/2)); position: relative; overflow: hidden; }
+.hero:after { content:""; position:absolute; right:-70px; top:-120px; width:320px; height:320px; border:40px solid var(--site-primary); border-radius:50%; opacity:calc(.18 * var(--site-decoration-opacity)); pointer-events:none; }
+.brand { display:flex; align-items:center; gap:10px; font-weight:950; letter-spacing:.06em; font-size:1.4rem; }
+.brand-mark { display:grid; place-items:center; width:38px; height:38px; background:var(--site-primary); color:white; border-radius:8px; font-weight:1000; }
+.eyebrow { color:#ffb8bb; font-weight:800; text-transform:uppercase; letter-spacing:.14em; font-size:.74rem; margin-top:26px; }
+h1 { font-family:var(--site-font-heading); font-size:calc(clamp(2rem,5vw,3.6rem) * var(--site-heading-scale)); line-height:1.03; letter-spacing:-.04em; margin:10px 0; max-width:700px; }
+.hero p { color:#e8e8e8; max-width:630px; line-height:1.6; margin-bottom:0; }
+.main { max-width:1120px; margin:auto; padding:26px 20px 52px; }
+.toolbar { display:grid; grid-template-columns:minmax(0,1fr) 210px; gap:12px; margin-bottom:18px; }
+input, select { width:100%; border:1px solid #d6d6d6; background:light-dark(#fff,#202020); color:light-dark(#171717,#f7f7f7); padding:14px 15px; border-radius:10px; font:inherit; min-height:48px; }
+input:focus, select:focus, a:focus-visible { outline:3px solid #e95b60; outline-offset:2px; }
+.summary { display:flex; justify-content:space-between; align-items:center; gap:12px; margin:8px 0 16px; color:light-dark(#5a5a5a,#b8b8b8); font-size:.92rem; }
+.count { color:var(--site-primary); font-weight:850; }
+.grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+.card { border:1px solid light-dark(#e4e4e4,#333); background:light-dark(#fff,#191919); border-radius:14px; padding:18px; box-shadow:0 5px 18px rgba(0,0,0,.035); }
+.card-top { display:flex; align-items:flex-start; gap:12px; }
+.pin { flex:0 0 40px; width:40px; height:40px; display:grid; place-items:center; background:#fff0f0; color:var(--site-primary); border-radius:10px; font-weight:900; }
+.card h2 { display:table; max-width:100%; background:var(--site-primary); color:#FFFFFF; padding:5px 8px; border-radius:5px; font-size:1rem; line-height:1.35; margin:1px 0 6px; overflow-wrap:anywhere; }
+.address { color:light-dark(#5b5b5b,#c0c0c0); line-height:1.5; font-size:.92rem; }
+.meta { display:flex; flex-wrap:wrap; gap:8px 14px; margin-top:14px; color:light-dark(#444,#ccc); font-size:.85rem; }
+.meta span { display:flex; align-items:center; gap:6px; }
+.actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+.actions a { display:inline-flex; align-items:center; justify-content:center; text-decoration:none; font-weight:800; font-size:.88rem; border-radius:8px; padding:10px 13px; min-height:40px; }
+.directions { background:var(--site-primary); color:#fff; }
+.call { border:1px solid light-dark(#d5d5d5,#444); color:light-dark(#171717,#fff); }
+.note { background:light-dark(#fff6e6,#292115); border:1px solid light-dark(#f2d5a5,#5b4726); color:light-dark(#5e4314,#f4d8a4); padding:13px 15px; border-radius:10px; font-size:.87rem; line-height:1.5; margin:0 0 18px; }
+.empty { display:none; padding:35px; text-align:center; border:1px dashed #aaa; border-radius:12px; }
+footer { border-top:1px solid light-dark(#e5e5e5,#333); padding:22px 20px; text-align:center; font-size:.82rem; color:light-dark(#666,#aaa); }
+@media(max-width:680px) { .toolbar { grid-template-columns:1fr; } .grid { grid-template-columns:1fr; } .hero { padding:24px 20px 30px; } .summary { align-items:flex-start; flex-direction:column; } }
+</style>
+</head>
+<body>
+<div id="app">
+  <header class="hero">
+    <div class="brand"><span class="brand-mark">M</span><span>MAXBUY</span></div>
+    <div class="eyebrow">Store directory · Ghana</div>
+    <h1>Find your nearest Maxbuy store.</h1>
+    <p>Search our store locations, check opening hours, call a branch, or open directions in Google Maps.</p>
+  </header>
+  <main class="main">
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="Search store name, town or address…" aria-label="Search stores">
+      <select id="region" aria-label="Filter by area">
+        <option value="">All locations</option>
+      </select>
+    </div>
+    <div class="note"><strong>Before public launch:</strong> Please verify branch phone numbers and map pins. Some phone numbers in the supplied spreadsheet appear to have lost their leading zero in Excel; those have been provisionally restored for display. One branch had no valid map link, so its directions button opens a Google Maps address search rather than a verified pin.</div>
+    <div class="summary"><span id="count" class="count">38 stores</span><span>Tap “Get directions” to navigate to a branch.</span></div>
+    <section id="stores" class="grid" aria-live="polite"></section>
+    <div id="empty" class="empty">No stores match that search. Try another store name or area.</div>
+  </main>
+  <footer>MAXBUY · Store information is subject to change. Please call the branch to confirm opening hours before travelling.</footer>
+</div>
+<script>
+const stores = [{"name": "MAXBUY CIRCLE ELECTRONIC STORE", "address": "Accra, Circle Opposite Vodafone", "map": "https://maps.app.goo.gl/9fC8uTnP8rD83uBx8", "phone": "0549131460", "tel": "0549131460", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": true}, {"name": "MAXBUY CIRCLE EXPERIENCE STORE", "address": "Near Circle American Mall", "map": "https://maps.app.goo.gl/Qrh3i4oW2KNuAW7A7", "phone": "024 477 5493", "tel": "0244775493", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": false}, {"name": "MAXBUY CIRCLE SMART STORE", "address": "Circle Odo Rise Lane", "map": "https://maps.app.goo.gl/9fC8uTnP8rD83uBx9", "phone": "054 552 9479", "tel": "0545529479", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": false}, {"name": "MAXBUY CIRCLE TECNO EXCLUSIVE STORE", "address": "Circle Tiptoe Lane", "map": "https://maps.app.goo.gl/9fC8uTnP8rD83uBx10", "phone": "0249991088", "tel": "0249991088", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": true}, {"name": "MAXBUY INFINIX EXCLUSIVE STORE", "address": "Near Circle American Mall", "map": "https://maps.app.goo.gl/ZMu2XV6i62hTXoZD9", "phone": "0556882565", "tel": "0556882565", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": true}, {"name": "MAXBUY TECNO FLAGSHIP STORE", "address": "Circle, Opposite Odo Rise", "map": "https://maps.app.goo.gl/KJfxqLjBzvCijq6N9", "phone": "024 373 8721", "tel": "0243738721", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": false}, {"name": "MAXBUY VVIP BUS STATION STORE", "address": "Circle, VVIP Bus Station", "map": "https://maps.app.goo.gl/yzHjhymUh7azKnnh8", "phone": "0277328591", "tel": "0277328591", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": true}, {"name": "MAXBUY DARKUMAN ELCETRONIC STORE", "address": "Darkuman Junction, Adjacent Enterprise", "map": "https://maps.app.goo.gl/bDBtXYtwEi6V9WCBA", "phone": "024 240 8817", "tel": "0242408817", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": false}, {"name": "MAXBUY DARKUMAN STORE", "address": "Darkuman, Opposite Circle Station", "map": "https://maps.app.goo.gl/n8a6PcXVo8zqhjg27", "phone": "0545529479", "tel": "0545529479", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": true}, {"name": "MAXBUY LAPAZ EXCLUSIVE STORE", "address": "Lapaz, Opposite Tema Station", "map": "https://maps.app.goo.gl/s24LWphkU5NkC1Sm6", "phone": "024 720 6963", "tel": "0247206963", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": false}, {"name": "MAXBUY LAPAZ STORE", "address": "Lapaz, Opposite Tema Station", "map": "https://maps.app.goo.gl/83JNgnYpt5RspxTV6", "phone": "0505888340", "tel": "0505888340", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": true}, {"name": "MAXBUY MADINA STORE", "address": "Madina, Opposite Zongo Junction, Near Goil Fuel Station", "map": "https://maps.app.goo.gl/cqeLwtJsu3wAipTe7", "phone": "020 022 4706", "tel": "0200224706", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": false}, {"name": "MAXBUY ODORKOR EXCLUSIVE STORE", "address": "Odorkor Traffic Light", "map": "https://maps.app.goo.gl/1gM4Pyc5fumahmNj8", "phone": "053 659 4640", "tel": "0536594640", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": false}, {"name": "MAXBUY HQ EXCLUSIVE STORE", "address": "Darkuman Junction, Adjacent CBG", "map": "https://maps.app.goo.gl/vM95W45gmtzPZCYV8", "phone": "024 063 0677", "tel": "0240630677", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": false}, {"name": "MAXBUY ONLINE STORE", "address": "Dansoman Junction, Adjacent FBN", "map": "https://maps.app.goo.gl/F83VqLCZFeziSZQJ7", "phone": "0247010333", "tel": "0247010333", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": true}, {"name": "MAXBUY JUNCTION MALL STORE", "address": "Junction Mall", "map": "https://maps.app.goo.gl/pYvZ4jJnGLwdzPTX9", "phone": "024 622 2980", "tel": "0246222980", "opening": "8:30AM", "closing": "8:00PM", "days": "Monday-Sunday", "phoneCheck": false}, {"name": "MAXBUY JUNCTION MALL EXCLUSIVE STORE", "address": "Junction Mall", "map": "https://maps.app.goo.gl/pYvZ4jJnGLwdzPTX9", "phone": "0240081005", "tel": "0240081005", "opening": "8:30AM", "closing": "8:00PM", "days": "Monday-Sunday", "phoneCheck": true}, {"name": "MAXBUY KANESHIE STORE", "address": "Kaneshie, Pamprom", "map": "https://maps.app.goo.gl/SKBzbi4srFpTf2rD6", "phone": "0559894300", "tel": "0559894300", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": true}, {"name": "MAXBUY KASOA STORE", "address": "Kasoa, Takoradi Station", "map": "https://www.google.com/maps/search/?api=1&query=Kasoa%2C%20Takoradi%20Station", "phone": "057 466 1757", "tel": "0574661757", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": false}, {"name": "MAXBUY TEMA EXCLUSIVE STORE", "address": "Tema Comm. 1, Opposite Ghana Water", "map": "https://maps.app.goo.gl/sHxPfYoVuuUuVUQG6", "phone": "0554543337", "tel": "0554543337", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": true}, {"name": "MAXBUY WESTHILLS STORE", "address": "West Hills Mall", "map": "https://maps.app.goo.gl/BPwjfLUcPEnKwyYw8", "phone": "050 362 4734", "tel": "0503624734", "opening": "8:30AM", "closing": "8:00PM", "days": "Monday-Sunday", "phoneCheck": false}, {"name": "MAXBUY ACHIMOTA MALL STORE", "address": "Achimota mall oppsite to Hisense", "map": "https://maps.app.goo.gl/Wda9tbuMe2zRiqZt6", "phone": "0267859524", "tel": "0267859524", "opening": "8:30AM", "closing": "8:00PM", "days": "Monday-Sunday", "phoneCheck": true}, {"name": "MAXBUY EAST LEGON STORE", "address": "La-Bawaleshi Rd, opposite Allied Oil Fuel Station", "map": "https://maps.app.goo.gl/zqAUT4agHa1nzb5j9", "phone": "054 123 1493", "tel": "0541231493", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": false}, {"name": "MAXBUY HO EXCLUSIVE STORE", "address": "Opposite Ho Main Station In-gate", "map": "https://maps.app.goo.gl/g8txXmVkUxPDaS6h9", "phone": "024 169 2100", "tel": "0241692100", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": false}, {"name": "MAXBUY HO STORE", "address": "Opposite HO main Lorry station , in gate under Soccer Bet", "map": "https://maps.app.goo.gl/GKJ7ToarBk2mF7JC6", "phone": "024 253 2105", "tel": "0242532105", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": false}, {"name": "MAXBUY BEREKUM STORE (New)", "address": "Suyani-berekum road, opposite CBG bank under the multi credit bank", "map": "https://maps.app.goo.gl/CpBWSinZFDNE99nh9", "phone": "054 503 8463", "tel": "0545038463", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": false}, {"name": "MAXBUY SWEDRU STORE", "address": "AGONA SWEDRU (MANDELA) OPPOSITE MELCOM", "map": "https://maps.app.goo.gl/RMbcdPocgrnsqBHc9", "phone": "054 930 6705", "tel": "0549306705", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": false}, {"name": "MAXBUY CAPE COAST STORE", "address": "cape coast Aboom mfantsipim junction", "map": "https://maps.app.goo.gl/h6roqfPsHiivLnWF6", "phone": "020 342 1882", "tel": "0203421882", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": false}, {"name": "MAXBUY TAKORADI ELECTRONIC STORE", "address": "Takoradi Market circle, After Post Office", "map": "https://maps.app.goo.gl/SsKMUYADtYqkXLoK8", "phone": "0272172681", "tel": "0272172681", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": true}, {"name": "MAXBUY TAKORADI EXCLUSIVE STORE", "address": "Takoradi Market circle, before post office", "map": "https://maps.app.goo.gl/CRzMkHTVXcuSFRJw8", "phone": "0241403927", "tel": "0241403927", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": true}, {"name": "MAXBUY KOFORIDUA STORE", "address": "Adweso opposite total six", "map": "https://maps.app.goo.gl/ehhBaxQnpeGsjvCf6", "phone": "027 021 0009", "tel": "0270210009", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": false}, {"name": "MAXBUY KUMASI ADUM STORE", "address": "Adum in the same building as Access bank - Nana Wiafe building", "map": "https://maps.app.goo.gl/RGit6rZ7mSeBUNQv8", "phone": "0243211779", "tel": "0243211779", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": true}, {"name": "MAXBUY PZ STORE", "address": "PZ Taxi Station", "map": "https://maps.app.goo.gl/z9SpTgTBgCWg4R7L6", "phone": "0596801040", "tel": "0596801040", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": true}, {"name": "MAXBUY KUMASI EXCLUSIVE STORE", "address": "Adum, near old melcom", "map": "https://maps.app.goo.gl/Fmu6KqBQdMrVnNdbA", "phone": "0542465624", "tel": "0542465624", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": true}, {"name": "MAXBUY SUNYANI STORE", "address": "Down floor at the OA travel and tour building", "map": "https://maps.app.goo.gl/488ktr8cAtA2sje88", "phone": "0247267349", "tel": "0247267349", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": true}, {"name": "MAXBUY TAMALE ELECTRONIC STORE", "address": "Opposite Zabzugu internet cafe OR\nSame building with Zoe medical center", "map": "https://www.google.com/maps?q=9.4066896,-0.8414658&z=17&hl=en", "phone": "0505082049", "tel": "0505082049", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": true}, {"name": "MAXBUY TAMALE EXCLUSIVE STORE", "address": "Tamale,opposite Airtel-tigo office,same lane as DStv office", "map": "https://goo.gl/maps/FQ1cNC4C5P7JQvGH6?g_st=aw", "phone": "0545281445", "tel": "0545281445", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": true}, {"name": "MAXBUY TAMALE STORE", "address": "First floor of Quality first shopping center\nOpposite Taxi Rank", "map": "https://maps.app.goo.gl/rzURBCcGVrR9vjxWA", "phone": "0544308234", "tel": "0544308234", "opening": "8:30AM", "closing": "5:00PM", "days": "Monday-Saturday", "phoneCheck": true}];
+const search = document.getElementById('search');
+const region = document.getElementById('region');
+const list = document.getElementById('stores');
+const count = document.getElementById('count');
+const empty = document.getElementById('empty');
+function areaFor(s) {
+  const text = (s.name + ' ' + s.address).toLowerCase();
+  const areas = ['Accra','Circle','Darkuman','Lapaz','Madina','Odorkor','Dansoman','Junction Mall','Kaneshie','Kasoa','Tema','West Hills','Achimota','East Legon','Ho','Berekum','Swedru','Cape Coast','Takoradi','Koforidua','Kumasi','Sunyani','Tamale'];
+  for (const a of areas) if (text.includes(a.toLowerCase())) return a;
+  return 'Other';
+}
+const areas = [...new Set(stores.map(areaFor))].sort((a,b)=>a.localeCompare(b));
+for (const a of areas) { const o=document.createElement('option'); o.value=a; o.textContent=a; region.appendChild(o); }
+function esc(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function render() {
+  const q=search.value.trim().toLowerCase();
+  const chosen=region.value;
+  const filtered=stores.filter(s => {
+    const matches=(s.name+' '+s.address+' '+s.phone+' '+s.days).toLowerCase().includes(q);
+    return matches && (!chosen || areaFor(s)===chosen);
+  });
+  count.textContent = `${filtered.length} of ${stores.length} stores`;
+  list.innerHTML=filtered.map((s,i)=>`
+    <article class="card">
+      <div class="card-top">
+        <div class="pin">${String(stores.indexOf(s)+1).padStart(2,'0')}</div>
+        <div><h2>${esc(s.name)}</h2><div class="address">${esc(s.address)}</div></div>
+      </div>
+      <div class="meta">
+        <span>◷ ${esc(s.opening)}–${esc(s.closing)}</span>
+        <span>▦ ${esc(s.days)}</span>
+      </div>
+      <div class="meta"><span>☎ ${esc(s.phone || 'Phone not provided')}</span></div>
+      <div class="actions">
+        <a class="directions" href="${esc(s.map)}" target="_blank" rel="noopener noreferrer">↗ Get directions</a>
+        ${s.tel ? `<a class="call" href="tel:${esc(s.tel)}">Call store</a>` : ''}
+      </div>
+    </article>`).join('');
+  empty.style.display=filtered.length?'none':'block';
+}
+search.addEventListener('input',render);
+region.addEventListener('change',render);
+render();
+</script>
+</body>
+</html>

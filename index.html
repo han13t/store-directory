@@ -97,6 +97,13 @@ function areaFor(s) {
 const areas = [...new Set(stores.map(areaFor))].sort((a,b)=>a.localeCompare(b));
 for (const a of areas) { const o=document.createElement('option'); o.value=a; o.textContent=a; region.appendChild(o); }
 function esc(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function telHref(value) {
+  // Normalize Ghana mobile numbers to international format for iOS dialers.
+  const digits = String(value ?? '').replace(/\D/g, '');
+  if (digits.startsWith('233')) return `tel:+${digits}`;
+  if (digits.startsWith('0') && digits.length === 10) return `tel:+233${digits.slice(1)}`;
+  return digits ? `tel:${digits}` : '';
+}
 function render() {
   const q=search.value.trim().toLowerCase();
   const chosen=region.value;
@@ -115,10 +122,10 @@ function render() {
         <span>◷ ${esc(s.opening)}–${esc(s.closing)}</span>
         <span>▦ ${esc(s.days)}</span>
       </div>
-      <div class="meta"><span>☎ ${s.tel ? `<a class="phone-link" href="tel:${esc(s.tel)}">${esc(s.phone)}</a>` : esc(s.phone || 'Phone not provided')}</span></div>
+      <div class="meta"><span>☎ ${s.tel ? `<a class="phone-link" href="${esc(telHref(s.tel))}">${esc(s.phone)}</a>` : esc(s.phone || 'Phone not provided')}</span></div>
       <div class="actions">
         <a class="directions" href="${esc(s.map)}" target="_blank" rel="noopener noreferrer">↗ Get directions</a>
-        ${s.tel ? `<a class="call" href="tel:${esc(s.tel)}">Call store</a>` : ''}
+        ${s.tel ? `<a class="call" href="${esc(telHref(s.tel))}">Call store</a>` : ''}
       </div>
     </article>`).join('');
   empty.style.display=filtered.length?'none':'block';
